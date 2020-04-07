@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Segment, Form } from 'semantic-ui-react'
+import { Segment, Form, Button } from 'semantic-ui-react'
 
 class EventForm extends Component {
   render() {
