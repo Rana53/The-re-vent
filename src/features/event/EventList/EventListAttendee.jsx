@@ -6,7 +6,7 @@ class EventListAttendee extends Component {
     const {attendee} = this.props;
     return (
       <List.Item>
-        <Image
+        <Image 
           as='a'
           size='mini'
           circular
