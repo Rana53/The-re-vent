@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Segment, Form, Button } from 'semantic-ui-react'
 
 class EventForm extends Component {
+  
   state = {
     title: '',
     date: '',
@@ -9,15 +10,28 @@ class EventForm extends Component {
     venue: '',
     hostedBy: ''
   };
+  componentWillMount(){
+    if (this.props.selectedEvent != null){
+      this.setState({
+        ...this.props.selectedEvent
+      })
+    }
+  }
   onSubmitForm = (e) => {
     e.preventDefault();
-    console.log(this.state)
+    if(this.state.id){
+      this.props.updateEvent(this.state);
+    } else {
+      this.props.submitFormToEventDashbord(this.state);
+    }    
   } 
+
   onChangeInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
+
   render() {
     const {cancelForm} = this.props;
     const {title, date, city, venue, hostedBy} = this.state;
@@ -72,7 +86,7 @@ class EventForm extends Component {
                   />
                 </Form.Field>
                 <Button positive type="submit">
-                Submit
+                  Submit
                 </Button>
                 <Button type="button" onClick={cancelForm}>Cancel</Button>
             </Form> 
