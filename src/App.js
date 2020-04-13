@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import EventDashboard from '../src/features/event/EventDashboard/EventDashboard';
+import EventDashboard from './features/events/EventDashboard/EventDashboard';
 import NavBar from './features/nav/NavBar/NavBar';
 import { Container } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Fragment>
+    <Fragment> 
       <NavBar/>
       <Container className="main">
-        <EventDashboard/>
+        <Route path='/events' component={EventDashboard}/>
       </Container>
     </Fragment>
   );
