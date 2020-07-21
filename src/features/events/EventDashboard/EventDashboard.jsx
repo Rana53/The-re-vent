@@ -61,11 +61,11 @@ class EventDashboard extends Component {
     isOpen: false,
     selectedEvent: null
   }
-  // handleFormToggle = () => {
-  //   this.setState(({isOpen}) => ({
-  //     isOpen: !isOpen
-  //   }))
-  // }
+  handleFormToggle = () => {
+    this.setState(({isOpen}) => ({
+      isOpen: !isOpen
+    }))
+  }
   handleCreaetFormOpen = () =>{  
     this.setState({
       isOpen: true,
@@ -125,7 +125,7 @@ class EventDashboard extends Component {
           <Button 
             positive 
             content='Create Event'
-            onClick={this.handleCreaetFormOpen}
+            onClick={this.handleFormToggle}
           />
           {
             isOpen && ( 
@@ -142,6 +142,5 @@ class EventDashboard extends Component {
     )
   }
 }
-
 
 export default EventDashboard;

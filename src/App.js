@@ -11,6 +11,7 @@ import PeopleDashboard from './features/user/PeopleDashboard/PeopleDashboard';
 import UserDetailedPage from './features/user/UserDetailed/UserDetailedPage';
 import SettingsDashboard from './features/user/Seetings/SettingsDashboard';
 import EventForm from './features/events/EventForm/EventForm';
+import TestComponent from './features/testarea/testComponent';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path='/profile/:id' component={UserDetailedPage}/>
               <Route path='/seetings' component={SettingsDashboard}/>
               <Route path='/createEvent' component={EventForm}/>
+              <Route path='/test' component={TestComponent}/>
             </Container>
           </Fragment>
         )}
