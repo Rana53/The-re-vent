@@ -6,4 +6,4 @@ const BasicPage = () => {
     </div>
   )
 }
-export default BasicPage
+export default BasicPage;

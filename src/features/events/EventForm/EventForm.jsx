@@ -10,8 +10,8 @@ class EventForm extends Component {
     venue: '',
     hostedBy: ''
   };
-  componentWillMount(){
-    if (this.props.selectedEvent != null){
+  componentDidMount(){
+    if (this.props.selectedEvent !== null){
       this.setState({
         ...this.props.selectedEvent
       })

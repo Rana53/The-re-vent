@@ -1,11 +1,17 @@
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from './testConstants';
+import {createReducer } from '../../common/util/reducerUtil';
 const initialState = {
   data: 41
 }
-
-const testReducer = (state = initialState) => {
-
-  
-  return state; 
+const incrementCounter = (state) => {
+  return { ...state, data: state.data + 1};
 }
+const decrementCounter = (state) => {
+  return { ...state, data: state.data - 1}
+}
+ 
 
-export default testReducer;
+export default createReducer(initialState, {
+  [INCREMENT_COUNTER]: incrementCounter,
+  [DECREMENT_COUNTER]: decrementCounter
+})

@@ -27,7 +27,7 @@ function App() {
               <Route path='/events/:id' component={EventDetailedPage}/>
               <Route path='/people' component={PeopleDashboard}/>
               <Route path='/profile/:id' component={UserDetailedPage}/>
-              <Route path='/seetings' component={SettingsDashboard}/>
+              <Route path='/settings' component={SettingsDashboard}/>
               <Route path='/createEvent' component={EventForm}/>
               <Route path='/test' component={TestComponent}/>
             </Container>

@@ -45,7 +45,7 @@ class EventListItem extends Component {
                 <Segment clearing>
                   <span>{event.description}</span>
                   <Button 
-                    as="a"
+                    as="a" 
                     color="red" 
                     floated="right" 
                     content="Delete"  
