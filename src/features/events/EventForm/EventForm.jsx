@@ -1,14 +1,33 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Segment, Form, Button } from 'semantic-ui-react'
-
-class EventForm extends Component {
-  
-  state = {
+import {createEvent, updateEvent, deleteEvent} from '../eventActions';
+import cuid from 'cuid';
+const mapState = (state, ownProps) => {
+  const eventId = ownProps.match.params.id;
+  let event = {
     title: '',
     date: '',
     city: '',
     venue: '',
     hostedBy: ''
+  }
+  if(eventId && state.events.length > 0){
+    event = state.events.filter(event => event.id === eventId)[0]
+  }
+  return {
+    event
+  }
+}
+const actions = {
+  createEvent,
+  updateEvent,
+  deleteEvent
+}
+class EventForm extends Component {
+  
+  state = {
+    ...this.props.event 
   };
   componentDidMount(){
     if (this.props.selectedEvent !== null){
@@ -21,11 +40,17 @@ class EventForm extends Component {
     e.preventDefault();
     if(this.state.id){
       this.props.updateEvent(this.state);
+      this.props.history.push(`/events/${this.state.id}`)
     } else {
-      this.props.submitFormToEventDashbord(this.state);
+      const newEvent = {
+        ...this.state,
+        id: cuid(),
+        hostPhotoURL: 'assets/user.png'
+      }
+      this.props.history.push(`/events/${newEvent.id}`)
+      this.props.createEvent(newEvent);
     }    
   } 
-
   onChangeInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -33,7 +58,6 @@ class EventForm extends Component {
   }
 
   render() {
-    const {cancelForm} = this.props;
     const {title, date, city, venue, hostedBy} = this.state;
     return (
       <Fragment>
@@ -85,10 +109,13 @@ class EventForm extends Component {
                   value={hostedBy}
                   />
                 </Form.Field>
-                <Button positive type="submit">
-                  Submit
+                <Button 
+                  positive 
+                  type="submit"
+                  >
+                    Submit
                 </Button>
-                <Button type="button" onClick={cancelForm}>Cancel</Button>
+                <Button type="button" onClick={this.props.history.goBack}>Cancel</Button>
             </Form> 
         </Segment>
       </Fragment>
@@ -96,4 +123,4 @@ class EventForm extends Component {
   }
 }
 
-export default EventForm;
+export default connect(mapState, actions)(EventForm);

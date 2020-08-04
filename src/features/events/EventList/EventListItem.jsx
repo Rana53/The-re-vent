@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Segment, Item, Icon, List, Button } from 'semantic-ui-react'
 import EventListAttendee from './EventListAttendee'
-
+import { Link } from 'react-router-dom';
+        
 class EventListItem extends Component {
   render() {
     const {event, selectEvent, deleteEvent} = this.props;
@@ -33,7 +34,6 @@ class EventListItem extends Component {
                 <Segment secondary>
                   <List horizontal>
                     {
-                      
                       event.attendees &&
                       event.attendees.map( attendee => (
                         <EventListAttendee key={attendee.id} attendee={attendee}/>
@@ -51,8 +51,9 @@ class EventListItem extends Component {
                     content="Delete"  
                     onClick= {() => deleteEvent(event.id)}
                   />
-                  <Button 
-                    as="a"
+                <Button
+                    as={Link}
+                    to={`/events/${event.id}`}
                     color="teal" 
                     floated="right" 
                     content="View" 
